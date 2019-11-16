@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -38,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webapp',
-    'widget_tweaks'
+    'widget_tweaks',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,6 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
+
+LOGIN_REDIRECT_URL = reverse_lazy('webapp:index')
+LOGOUT_REDIRECT_URL = reverse_lazy('webapp:index')
