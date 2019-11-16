@@ -14,10 +14,15 @@
             </div>
         </div>
         <p class="mt-2"><b>Категория:</b> {{ product.get_category_display }}</p>
+          <p class="mt-2"><b>Описание:</b> {{ product.description }}</p>
+    {% if perms.webapp.change_product %}
         <a href="{% url "webapp:product_update" product.pk %}"
            class="btn btn-primary mt-2">Изменить</a>
+    {% endif %}
+    {% if perms.webapp.delete_product %}
         <a href="{% url "webapp:product_delete" product.pk %}"
            class="btn btn-primary mt-2">Удалить</a>
+    {% endif %}
         <a href="{% url "webapp:add_review" product.pk %}"
            class="btn btn-primary mt-2">Оставить отзыв</a>
     </div>
@@ -25,17 +30,17 @@
       {{ reviews }}
         {% for review in product.reviews.all %}
             <div class="review">
-                <b>Автор - </b>{{ review.author }}
+                <b>Автор - </b><a href="{% url "accounts:detail" review.pk%}">{{ review.author }}</a>
                 <p><b>Оценка автора:</b> {{ review.mark }}</p>
                 <div class="pre"><b>Отзыв:</b> {{ review.text }}</div>
                     <p class="comment-links">
-{#                        {% if perms.webapp.change_task %}#}
+                        {% if perms.webapp.change_review %}
                             <a href="{% url 'webapp:review_update' review.pk %}">Изменить отзыв</a>
-{#                        {% endif %}#}
-{#                        {% if perms.webapp.delete_task %}#}
+                        {% endif %}
+                        {% if perms.webapp.delete_review %}
                             <a class="ml-2" href="{% url 'webapp:review_delete' review.pk %}">Удалить</a>
-{#                        {% endif %}#}
-{#                    </p>#}
+                        {% endif %}
+                    </p>
             </div>
         {% empty %}
             <p>No reviews yet.</p>

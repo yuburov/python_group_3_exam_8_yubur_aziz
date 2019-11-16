@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -18,36 +19,37 @@ class ProductView(DetailView):
     model = Product
     template_name = 'product/detail.html'
 
-class ProductCreateView(CreateView):
+class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
     template_name = 'product/create.html'
     fields = ('name', 'category', 'description', 'image')
     success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.add_product'
+    permission_denied_message = 'Доступ ограничен'
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     context_object_name = 'product'
     template_name = 'product/update.html'
+    permission_required = 'webapp.change_product'
+    permission_denied_message = 'Доступ ограничен'
 
     def get_success_url(self):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.pk})
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(PermissionRequiredMixin,DeleteView):
     model = Product
     context_object_name = 'product'
     template_name = 'product/delete.html'
     success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.delete_product'
+    permission_denied_message = 'Доступ ограничен'
 
 class ReviewCreateView(CreateView):
     model = Review
     template_name = 'review/create.html'
     form_class = ReviewForm
-
-    # def get_form_kwargs(self):
-    #     kwargs = super().get_form_kwargs()
-    #     kwargs['project'] = Project.objects.filter(project_users__user=self.request.user)
-    #     return kwargs
 
     def get_product(self):
         pk = self.kwargs.get('pk')
@@ -64,21 +66,31 @@ class ReviewCreateView(CreateView):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.product.pk})
 
 
-class ReviewUpdateView(UpdateView):
+class ReviewUpdateView(PermissionRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'review/update.html'
     form_class = ReviewForm
     model = Review
     context_object_name = 'review'
+    permission_required = 'webapp.change_review'
+    permission_denied_message = 'Доступ ограничен'
+
+    def test_func(self):
+        return self.request.user.pk == self.kwargs['pk']
 
     def get_success_url(self):
         return reverse('webapp:product_detail', kwargs={'pk': self.object.product.pk})
 
 
-class ReviewDeleteView(DeleteView):
+class ReviewDeleteView(PermissionRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'review/delete.html'
     context_object_name = 'review'
     model = Review
     success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.delete_review'
+    permission_denied_message = 'Доступ ограничен'
+
+    def test_func(self):
+        return self.request.user.pk == self.kwargs['pk']
 
 
 
