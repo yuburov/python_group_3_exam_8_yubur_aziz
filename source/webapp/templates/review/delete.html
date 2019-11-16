@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Удалить отзыв{% endblock %}
+{% block content %}
+        <h1 class="text-center my-3">Удалить отзыв</h1>
+        <p class="text-center">Вы уверены, что хотите удалить отзыв {{ review }}?</p>
+        <form action="{% url 'webapp:review_delete' review.pk %}" method="POST" class="text-center">
+            {% csrf_token %}
+            <input type="submit" value="Да" class="btn btn-danger">
+            <a href="{% url "webapp:index" %}" class="btn btn-dark ml-3">Нет</a>
+        </form>
+{% endblock %}
