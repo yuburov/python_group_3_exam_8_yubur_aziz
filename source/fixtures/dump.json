@@ -1,0 +1,100 @@
+[
+{
+  "model": "webapp.product",
+  "pk": 1,
+  "fields": {
+    "name": "\u0428\u0430\u0443\u0440\u043c\u0430",
+    "category": "food",
+    "description": "\u0412\u043a\u0443\u0441\u043d\u0430\u044f \u0448\u0430\u0443\u0440\u043c\u0430 \u0441 \u0433\u043e\u0432\u044f\u0434\u0438\u043d\u043e\u0439",
+    "image": "product_images/Shaurma_siteWeb.jpg"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "Nike Air Max",
+    "category": "clothes",
+    "description": "\u041a\u0440\u0443\u0442\u044b\u0435 \u043a\u0440\u043e\u0441\u0441\u043e\u0432\u043a\u0438",
+    "image": "product_images/images.jpeg"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "\u041c\u044f\u0447",
+    "category": "other",
+    "description": "\u0424\u0443\u0442\u0431\u043e\u043b\u044c\u043d\u044b\u0439 \u043c\u044f\u0447, \u043f\u043e\u0434\u043f\u0438\u0441\u0430\u043d\u043d\u044b\u0435 \u0441\u0430\u043c\u0438\u043c \u041a\u0440\u0438\u0448\u0442\u0438\u0430\u043d\u0443 \u0420\u043e\u043d\u0430\u043b\u0434\u0443",
+    "image": "product_images/futbolnij-myach-nike-club-team-2016-jpg.jpg"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$LaysbkteR23V$eHIZjIeXDK8JaCg41K0Ja/+6Rge1LFzXdetAsOYzRaM=",
+    "last_login": "2019-11-16T06:14:26.691Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-11-16T05:15:19.186Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "\u0417\u0431\u0441\u044c! \u041f\u0440\u0438\u0434\u0443 \u043f\u043e\u0442\u043e\u043c \u0437\u0430 \u0435\u0449\u0435 \u043e\u0434\u043d\u043e\u0439",
+    "mark": 5
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 2,
+  "fields": {
+    "author": 1,
+    "product": 3,
+    "text": "\u041f\u043e\u0434\u043f\u0438\u0441\u044c \u0420\u043e\u043d\u0430\u043b\u0434\u0443 \u0432\u043e\u043e\u0431\u0449\u0435 \u043d\u0435 \u043d\u0440\u0430\u0432\u0438\u0442\u0441\u044f... \u041a\u043e\u0440\u044f\u0432\u0430\u044f...",
+    "mark": 3
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 3,
+  "fields": {
+    "author": 1,
+    "product": 2,
+    "text": "\u041e\u0442\u043b\u0438\u0447\u043d\u044b\u0435 \u043a\u0440\u043e\u0441\u0441\u043e\u0432\u043a\u0438! \u041d\u0430\u0439\u043a \u0440\u0443\u043b\u0438\u0442!",
+    "mark": 5
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 4,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "\u0432\u043a\u0443\u0441\u043d\u0430\u044f \u0448\u0430\u0443\u0440\u043c\u0430",
+    "mark": 4
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 5,
+  "fields": {
+    "author": 1,
+    "product": 3,
+    "text": "\u0428\u0438\u043a\u0430\u0440\u043d\u044b\u0439 \u043c\u044f\u0447))",
+    "mark": 5
+  }
+}
+]
